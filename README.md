@@ -37,3 +37,5 @@ Pipeline-Lauf in Fabric samt SQL-Prüfung mit 95000 eindeutigen Aufträgen.
 
 <img width="685" height="542" alt="Screenshot 2026-09-17 003950" src="https://github.com/user-attachments/assets/3a4256a8-574c-4cd1-92fc-eca33683bc60" />
 
+<img width="750" height="178" alt="image" src="https://github.com/user-attachments/assets/4e49ec12-4e25-4968-8d63-4bd8e26ec4d9" />
+
