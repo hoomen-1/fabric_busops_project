@@ -29,10 +29,12 @@ Nach der Bereinigung sollten 95000 eindeutige Aufträge übrig bleiben. Die Anza
 
 ## Screenshots
 
-Hier sieht man den Pipeline-Lauf in Fabric und die anschließende SQL-Prüfung mit 95.000 eindeutigen Aufträgen.
+Pipeline-Lauf in Fabric samt SQL-Prüfung mit 95000 eindeutigen Aufträgen.
 
 <img width="1765" height="601" alt="Screenshot 2026-09-17 004422" src="https://github.com/user-attachments/assets/d9f40727-0beb-4ee0-8b6c-18330e8da254" />
 
 <img width="1762" height="650" alt="Screenshot 2026-09-17 004318" src="https://github.com/user-attachments/assets/57a44b7d-5247-4f27-b465-9300923824dd" />
 
 <img width="685" height="542" alt="Screenshot 2026-09-17 003950" src="https://github.com/user-attachments/assets/3a4256a8-574c-4cd1-92fc-eca33683bc60" />
+
+<img width="732" height="188" alt="image" src="https://github.com/user-attachments/assets/f85fdc14-cc4b-4748-be84-4c8f5568e3a1" />
