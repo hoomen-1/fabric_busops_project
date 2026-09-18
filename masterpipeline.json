@@ -1,0 +1,97 @@
+{
+    "name": "masterpipeline_busops",
+    "objectId": "00000000-0000-0000-0000-000000000004",
+    "properties": {
+        "activities": [
+            {
+                "name": "bronze_laden",
+                "type": "InvokePipeline",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "waitOnCompletion": true,
+                    "operationType": "InvokeFabricPipeline",
+                    "pipelineId": "00000000-0000-0000-0000-000000000003",
+                    "workspaceId": "00000000-0000-0000-0000-000000000001",
+                    "parameters": {
+                        "files": [
+                            "fahrzeuge",
+                            "werkstaetten",
+                            "auftraege"
+                        ]
+                    }
+                },
+                "externalReferences": {
+                    "connection": "00000000-0000-0000-0000-000000000007"
+                }
+            },
+            {
+                "name": "silver_cleaning",
+                "type": "RefreshDataflow",
+                "dependsOn": [
+                    {
+                        "activity": "bronze_laden",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "dataflowId": "00000000-0000-0000-0000-000000000005",
+                    "workspaceId": "00000000-0000-0000-0000-000000000001",
+                    "notifyOption": "NoNotification",
+                    "dataflowType": "DataflowFabric",
+                    "executeMashupQueriesOnly": true
+                }
+            },
+            {
+                "name": "Gold_loading",
+                "type": "SqlServerStoredProcedure",
+                "dependsOn": [
+                    {
+                        "activity": "silver_cleaning",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "storedProcedureName": "dbo.sp_load_gold"
+                },
+                "linkedService": {
+                    "name": "busops_wh_gold",
+                    "properties": {
+                        "annotations": [],
+                        "type": "DataWarehouse",
+                        "typeProperties": {
+                            "endpoint": "WAREHOUSE_ENDPOINT",
+                            "artifactId": "00000000-0000-0000-0000-000000000006",
+                            "workspaceId": "00000000-0000-0000-0000-000000000001"
+                        }
+                    }
+                }
+            }
+        ],
+        "lastPublishTime": "2026-09-16T22:48:09Z"
+    }
+}
